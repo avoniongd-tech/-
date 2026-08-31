@@ -1,0 +1,33 @@
+<svg viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="gold" x1="0" x2="1">
+    <stop offset="0" stop-color="#6A4E1E"/>
+    <stop offset="0.4" stop-color="#C7A14A"/>
+    <stop offset="0.7" stop-color="#F6E27A"/>
+    <stop offset="1" stop-color="#8A6A2E"/>
+  </linearGradient>
+  <filter id="glow" x="-20%" y="-100%" width="140%" height="300%">
+    <feGaussianBlur stdDeviation="6" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <linearGradient id="shine" x1="-1" y1="0" x2="2" y2="0">
+    <stop offset="0" stop-color="rgba(255,255,255,0)"/>
+    <stop offset=".5" stop-color="rgba(255,255,255,.9)"/>
+    <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <clipPath id="logoClip">
+    <text x="8" y="66" font-size="64" font-weight="700" font-family="Georgia, 'Times New Roman', serif">ВК</text>
+  </clipPath>
+</defs>
+<rect x="0" y="0" width="320" height="96" rx="14" fill="#0A0A0A"/>
+<rect x="6" y="6" width="308" height="84" rx="12" fill="#131313"/>
+<g filter="url(#glow)">
+  <text x="8" y="66" font-size="64" font-weight="800" fill="url(#gold)" letter-spacing="2"
+        font-family="Georgia, 'Times New Roman', serif">ВК</text>
+</g>
+<text x="120" y="63" font-size="26" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif"
+      letter-spacing="2">РЕНОВАЦИЯ</text>
+<rect clip-path="url(#logoClip)" x="-320" y="0" width="120" height="96" fill="url(#shine)">
+  <animate attributeName="x" from="-320" to="320" dur="2.6s" repeatCount="indefinite"/>
+</rect>
+</svg>

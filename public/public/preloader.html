@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ВК Реновация — Загрузка</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden;background:#0a0a0a}
+  #preloader{
+    position:fixed;inset:0;background:#0a0a0a;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    z-index:9999;
+  }
+  #preloader video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;z-index:0;
+  }
+  .pre-content{
+    position:relative;z-index:2;
+    display:flex;flex-direction:column;
+    align-items:center;gap:32px;
+    animation:fadeUp .8s ease both;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .logo-diamond{
+    width:72px;height:72px;
+    background:linear-gradient(135deg,#c9a84c,#f5d98a,#a8792b);
+    clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    display:flex;align-items:center;justify-content:center;
+    animation:rotateDiamond 6s linear infinite;
+    box-shadow:0 0 40px rgba(201,168,76,.5);
+  }
+  @keyframes rotateDiamond{to{transform:rotate(360deg)}}
+  .logo-letters{
+    font-family:'Georgia',serif;
+    font-size:14px;letter-spacing:6px;
+    color:#c9a84c;text-transform:uppercase;
+  }
+  .brand-name{
+    font-family:'Georgia',serif;
+    font-size:clamp(28px,6vw,52px);
+    color:#f0ece4;
+    letter-spacing:3px;
+    text-align:center;
+    text-shadow:0 2px 30px rgba(201,168,76,.3);
+  }
+  .brand-sub{
+    font-family:'Helvetica Neue',sans-serif;
+    font-size:12px;letter-spacing:8px;
+    color:#c9a84c;text-transform:uppercase;
+    text-align:center;
+  }
+  /* Gold progress bar */
+  .progress-wrap{
+    width:min(320px,80vw);
+    height:2px;background:rgba(201,168,76,.15);
+    border-radius:2px;overflow:hidden;
+    position:relative;
+  }
+  .progress-bar{
+    height:100%;width:0;
+    background:linear-gradient(90deg,#a8792b,#f5d98a,#c9a84c);
+    border-radius:2px;
+    transition:width .12s linear;
+    box-shadow:0 0 12px #c9a84c;
+  }
+  .progress-pct{
+    font-family:'Helvetica Neue',sans-serif;
+    font-size:11px;letter-spacing:3px;color:#c9a84c88;
+    margin-top:8px;text-align:center;
+  }
+  .skip-btn{
+    margin-top:8px;
+    background:transparent;border:1px solid #c9a84c44;
+    color:#c9a84c88;font-size:11px;letter-spacing:3px;
+    padding:8px 24px;border-radius:30px;cursor:pointer;
+    transition:.3s;font-family:'Helvetica Neue',sans-serif;
+    text-transform:uppercase;
+  }
+  .skip-btn:hover{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,.06)}
+</style>
+</head>
+<body>
+<div id="preloader">
+  <video id="pre-video" autoplay muted playsinline loop>
+    <source src="assets/video/promo.mp4" type="video/mp4"/>
+  </video>
+  <div class="pre-content">
+    <div class="logo-wrap">
+      <div class="logo-diamond">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 4L20 14L14 24L8 14Z" stroke="#0a0a0a" stroke-width="1.5" fill="none"/>
+          <circle cx="14" cy="14" r="3" fill="#0a0a0a"/>
+        </svg>
+      </div>
+      <div class="logo-letters">ВК Реновация</div>
+    </div>
+    <div class="brand-name">ВК Реновация</div>
+    <div class="brand-sub">Элитный ремонт &amp; дизайн</div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="pbar"></div>
+    </div>
+    <div class="progress-pct" id="pct">0%</div>
+    <button class="skip-btn" onclick="goMain()">Пропустить</button>
+  </div>
+</div>
+<script>
+  let p=0;
+  const bar=document.getElementById('pbar');
+  const pct=document.getElementById('pct');
+  const iv=setInterval(()=>{
+    p+=Math.random()*4+1;
+    if(p>=100){p=100;clearInterval(iv);setTimeout(goMain,400);}
+    bar.style.width=p+'%';
+    pct.textContent=Math.round(p)+'%';
+  },80);
+  function goMain(){
+    document.getElementById('preloader').style.transition='opacity .7s';
+    document.getElementById('preloader').style.opacity='0';
+    setTimeout(()=>location.href='index.html',700);
+  }
+</script>
+</body>
+</html>

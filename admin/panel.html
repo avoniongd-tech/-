@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><title>Admin Panel</title>
+<style>
+  body{font-family:system-ui;margin:20px;max-width:900px}
+  textarea{width:100%;min-height:300px}
+  .row{margin:12px 0}
+</style>
+<h3>Редактор контента (конструктор)</h3>
+<p>Редактируйте файл data/content.json. Нажмите «Загрузить», внесите правки, затем «Скачать JSON» и замените файл в папке data.</p>
+<div class="row"><button onclick="load()">Загрузить текущий JSON</button></div>
+<div class="row"><textarea id="j"></textarea></div>
+<div class="row"><button onclick="download()">Скачать JSON</button></div>
+<script>
+async function load(){
+  try{
+    const r = await fetch('../data/content.json?ts='+Date.now());
+    document.getElementById('j').value = await r.text();
+  }catch(e){ alert('Не удалось загрузить content.json'); }
+}
+function download(){
+  const blob = new Blob([document.getElementById('j').value], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'content.json'; a.click();
+}
+</script>

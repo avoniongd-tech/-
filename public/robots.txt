@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
-Sitemap: https://vk-renovation.ru/sitemap.xml
+Sitemap: /sitemap.xml

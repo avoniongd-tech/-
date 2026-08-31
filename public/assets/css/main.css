@@ -630,13 +630,10 @@ ul,ol{list-style:none}
   *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
 }
 
-.nav__logo-diamond{position:relative;overflow:hidden}.nav__logo-diamond video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inherit;opacity:.95}.nav__logo-diamond::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#f0cf9144,transparent 55%);pointer-events:none}.nav__link--ai{color:var(--gold-300)!important;border:1px solid var(--border-gold);border-radius:999px;padding:7px 12px}.nav__link--ai::after{display:none}
 
-/* Imported successful social rail */
-.social-rail{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:12px!important;width:44px!important}.social-rail .social-icon{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;flex:0 0 44px!important;margin:0!important}.social-rail .social-icon svg{width:22px;height:22px;display:block;z-index:1}.social-rail .social-icon[data-brand=instagram]{color:#d36b9f;--brand:#c13584}@media(max-width:900px){.social-rail{display:none!important}}
-
-/* SMOOTH VIDEO PERFORMANCE */
-video{filter:none!important;will-change:auto!important}.nav__logo-diamond video{filter:none!important;transform:none!important}.hero__video{filter:none!important}.video-section video{filter:none!important}.hero-shade,.vignette{backdrop-filter:none!important}
-
-/* Skills-based UX, accessibility and conversion improvements */
-:focus-visible{outline:2px solid var(--gold-300);outline-offset:4px}.form-status{min-height:1.4em;margin-top:12px;font-size:.85rem}.form-status.success{color:#65d18b}.form-status.error{color:#ff8888}.portfolio-item{cursor:pointer}.btn[disabled]{opacity:.65;cursor:wait}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.hero__video,.nav__logo-diamond video{display:none}}
+/* Final precision fixes: original design preserved */
+.social-icon img{position:relative;z-index:1;width:20px;height:20px;object-fit:contain;display:block;}
+.social-icon{font-family:var(--font-body);font-size:18px;text-decoration:none;}
+.testimonial__stars{justify-content:center;text-align:center;width:100%;}
+.testimonial{text-align:left;}
+@media(max-width:600px){.social-rail{right:10px;gap:10px}.social-icon{width:40px;height:40px}.social-icon img{width:18px;height:18px;}}
