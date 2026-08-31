@@ -691,3 +691,16 @@ html{scroll-behavior:auto;}
   .contact-form{padding:var(--space-5);}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.hero__video,.video-section video,.nav__video-logo video{display:none;}}
+
+
+/* ===== ADMIN + MOBILE MENU FINAL PASS ===== */
+.footer__admin{display:inline-flex;align-items:center;border:1px solid var(--border-gold);border-radius:var(--radius-pill);padding:7px 14px;color:var(--gold-400);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:all var(--transition);}
+.footer__admin:hover{background:var(--gold-400);color:var(--surface-0);border-color:var(--gold-400);}
+body.menu-open{overflow:hidden;}
+.nav__burger{position:relative;z-index:110;}
+@media(max-width:900px){
+  .nav__links{visibility:hidden;transform:translateY(-10px);transition:opacity .22s ease,transform .22s ease,visibility .22s ease;}
+  .nav__links.open{visibility:visible;transform:translateY(0);}
+  .nav__burger.is-open{position:relative;}
+}
+@media(min-width:901px){.nav__links{visibility:visible!important;opacity:1!important;pointer-events:auto!important;transform:none!important;}}

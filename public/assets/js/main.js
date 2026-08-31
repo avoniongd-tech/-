@@ -50,18 +50,27 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-burger?.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  const spans = burger.querySelectorAll('span');
-  const isOpen = navLinks.classList.contains('open');
-  spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px,5px)' : '';
-  spans[1].style.opacity = isOpen ? '0' : '1';
-  spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
-});
-
-document.querySelectorAll('.nav__link').forEach(l => {
-  l.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+const closeMenu = () => {
+  if (!navLinks || !burger) return;
+  navLinks.classList.remove('open');
+  burger.classList.remove('is-open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+  burger.querySelectorAll('span')[0].style.transform = '';
+  burger.querySelectorAll('span')[1].style.opacity = '1';
+  burger.querySelectorAll('span')[2].style.transform = '';
+};
+const openMenu = () => {
+  if (!navLinks || !burger) return;
+  navLinks.classList.add('open');
+  burger.classList.add('is-open');
+  burger.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('menu-open');
+};
+burger?.addEventListener('click', () => navLinks.classList.contains('open') ? closeMenu() : openMenu());
+document.querySelectorAll('.nav__link').forEach(l => l.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+navLinks?.addEventListener('click', e => { if (e.target === navLinks) closeMenu(); });
 
 /* ---------- REVEAL ON SCROLL ---------- */
 const revealObserver = new IntersectionObserver((entries) => {
@@ -175,21 +184,21 @@ form?.addEventListener('submit', (e) => {
 (() => {
   const videos = [...document.querySelectorAll('video[data-sync-group="hero"]')];
   if (videos.length < 2) return;
-  const align = () => {
-    const master = videos[1];
-    if (!master || !Number.isFinite(master.currentTime)) return;
-    videos.forEach(video => {
-      if (video !== master && Math.abs(video.currentTime - master.currentTime) > 0.08) {
+  const master = videos.find(v => v.classList.contains('hero__video')) || videos[0];
+  const followers = videos.filter(v => v !== master);
+  const sync = () => {
+    if (!Number.isFinite(master.currentTime)) return;
+    followers.forEach(video => {
+      if (Math.abs(video.currentTime - master.currentTime) > 0.035) {
         try { video.currentTime = master.currentTime; } catch (_) {}
       }
     });
   };
-  videos.forEach(video => {
-    video.muted = true;
-    video.playsInline = true;
-    video.addEventListener('loadedmetadata', align, {once:false});
-    video.addEventListener('play', () => { videos.forEach(v => v.play().catch(() => {})); align(); }, {once:true});
-  });
+  const start = () => { videos.forEach(v => { v.muted = true; v.playsInline = true; v.play().catch(() => {}); }); sync(); };
+  master.addEventListener('play', start, {once:true});
+  master.addEventListener('timeupdate', sync);
+  master.addEventListener('loadedmetadata', sync);
+  followers.forEach(v => v.addEventListener('loadedmetadata', sync));
 })();
 
 /* ---------- ACTIVE NAV LINK ---------- */
