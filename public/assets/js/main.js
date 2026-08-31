@@ -186,19 +186,24 @@ form?.addEventListener('submit', (e) => {
   if (videos.length < 2) return;
   const master = videos.find(v => v.classList.contains('hero__video')) || videos[0];
   const followers = videos.filter(v => v !== master);
+  let raf = 0;
   const sync = () => {
-    if (!Number.isFinite(master.currentTime)) return;
-    followers.forEach(video => {
-      if (Math.abs(video.currentTime - master.currentTime) > 0.035) {
-        try { video.currentTime = master.currentTime; } catch (_) {}
-      }
-    });
+    if (!master.paused && Number.isFinite(master.currentTime)) {
+      followers.forEach(v => {
+        if (Math.abs(v.currentTime - master.currentTime) > 0.045) {
+          try { v.currentTime = master.currentTime; } catch (_) {}
+        }
+      });
+      raf = requestAnimationFrame(sync);
+    } else raf = 0;
   };
-  const start = () => { videos.forEach(v => { v.muted = true; v.playsInline = true; v.play().catch(() => {}); }); sync(); };
-  master.addEventListener('play', start, {once:true});
-  master.addEventListener('timeupdate', sync);
-  master.addEventListener('loadedmetadata', sync);
-  followers.forEach(v => v.addEventListener('loadedmetadata', sync));
+  const start = () => {
+    videos.forEach(v => { v.muted=true; v.playsInline=true; v.play().catch(()=>{}); });
+    if (!raf) raf=requestAnimationFrame(sync);
+  };
+  master.addEventListener('play', start);
+  master.addEventListener('loadedmetadata', start, {once:true});
+  followers.forEach(v => v.addEventListener('loadedmetadata', () => { try { v.currentTime=master.currentTime; } catch(_){} }));
 })();
 
 /* ---------- ACTIVE NAV LINK ---------- */
