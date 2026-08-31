@@ -147,7 +147,7 @@
 <body>
 <!-- PRELOADER: shown before the main page -->
 <div id="site-preloader" aria-label="Загрузка сайта">
-  <video id="site-preloader-video" autoplay muted playsinline preload="auto">
+  <video id="site-preloader-video" autoplay muted playsinline preload="auto" poster="assets/img/video_poster.jpg">
     <source src="assets/video/preloader.mp4" type="video/mp4">
   </video>
   <div class="site-preloader__vignette"></div>
@@ -174,7 +174,7 @@
   <nav class="nav" role="navigation" aria-label="Основная навигация">
     <a href="#" class="nav__logo" aria-label="ВК Реновация — на главную">
       <span class="nav__video-logo" aria-hidden="true">
-        <video class="site-sync-video" data-sync-group="hero" autoplay muted loop playsinline preload="metadata">
+        <video class="site-sync-video" data-sync-group="hero" autoplay muted loop playsinline preload="none">
           <source src="assets/video/hero.mp4" type="video/mp4"/>
         </video>
         <span class="nav__video-logo-shine"></span>
@@ -198,7 +198,7 @@
 
 <!-- HERO -->
 <section class="hero" id="hero" aria-label="Главный экран">
-  <video class="hero__video site-sync-video" data-sync-group="hero" autoplay muted playsinline loop preload="metadata" aria-hidden="true">
+  <video class="hero__video site-sync-video" data-sync-group="hero" autoplay muted playsinline loop preload="none" aria-hidden="true">
     <source src="assets/video/hero.mp4" type="video/mp4"/>
   </video>
   <div class="hero__overlay" aria-hidden="true"></div>
@@ -399,7 +399,7 @@
 
 <!-- VIDEO SECTION -->
 <div class="video-section" aria-hidden="true">
-  <video autoplay muted playsinline loop>
+  <video autoplay muted playsinline loop preload="none" poster="assets/img/video_poster.jpg">
     <source src="assets/video/hero.mp4" type="video/mp4"/>
   </video>
   <div class="video-section__overlay"></div>
@@ -689,18 +689,11 @@
         <div class="footer__brand-name">ВК Реновация</div>
         <p class="footer__brand-text">Ремонт и отделка под ключ в Санкт-Петербурге: квартиры, коттеджи, офисы, террасы и ландшафт.</p>
         <div class="footer__social" aria-label="Социальные сети">
-          <a href="tel:+78126423247" class="footer__social-btn" aria-label="Позвонить">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm9.585 3.257c-2.47 0-3.88-1.67-3.88-4.757 0-3.09 1.41-4.757 3.88-4.757h.023c2.471 0 3.881 1.667 3.881 4.757 0 3.087-1.41 4.757-3.88 4.757h-.024z"/></svg>
-          </a>
-          <a href="https://t.me/vk_renovation" class="footer__social-btn" aria-label="Telegram" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.917 7.083l-1.69 7.955c-.125.566-.455.7-.92.436l-2.548-1.878-1.23 1.183c-.136.136-.25.25-.512.25l.183-2.59 4.716-4.26c.205-.183-.045-.283-.316-.1L8.167 14.55l-2.5-.78c-.543-.17-.554-.543.113-.803l9.764-3.764c.452-.163.848.1.373 1.88z"/></svg>
-          </a>
-          <a href="https://wa.me/78126423247" class="footer__social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2 22l5.44-1.42c1.37.73 2.92 1.14 4.6 1.14 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg>
-          </a>
-          <a href="mailto:vk_renovation@mail.ru" class="footer__social-btn" aria-label="Email">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
-          </a>
+          <a href="tel:+78126423247" class="footer__social-btn" aria-label="Позвонить"><span aria-hidden="true">☎</span></a>
+          <a href="https://t.me/vk_renovation" class="footer__social-btn" aria-label="Telegram" target="_blank" rel="noopener"><img src="assets/icons/v17/telegram.svg" alt="Telegram" width="20" height="20"></a>
+          <a href="https://vk.com/vk_renovation" class="footer__social-btn" aria-label="ВКонтакте" target="_blank" rel="noopener"><img src="assets/icons/v17/vk.svg" alt="ВКонтакте" width="20" height="20"></a>
+          <a href="https://wa.me/78126423247" class="footer__social-btn" aria-label="WhatsApp" target="_blank" rel="noopener"><img src="assets/icons/v17/whatsapp.svg" alt="WhatsApp" width="20" height="20"></a>
+          <a href="mailto:vk_renovation@mail.ru" class="footer__social-btn" aria-label="Email"><span aria-hidden="true">✉</span></a>
         </div>
       </div>
       <div>

@@ -11,7 +11,7 @@
   const skip = document.getElementById('site-preloader-skip');
   let closed = false;
   const started = performance.now();
-  const fallbackMs = 7200;
+  const fallbackMs = 4500;
 
   const close = () => {
     if (closed) return;
@@ -25,6 +25,7 @@
   skip?.addEventListener('click', close);
   video?.addEventListener('ended', close);
   video?.addEventListener('error', close);
+  video?.addEventListener('stalled', () => { window.setTimeout(() => { if (!video.readyState) close(); }, 1800); }, {once:true});
   video?.play?.().catch(() => {});
 
   const tick = () => {
@@ -174,7 +175,6 @@ form?.addEventListener('submit', (e) => {
 (() => {
   const videos = [...document.querySelectorAll('video[data-sync-group="hero"]')];
   if (videos.length < 2) return;
-  let syncing = false;
   const align = () => {
     const master = videos[1];
     if (!master || !Number.isFinite(master.currentTime)) return;
@@ -190,7 +190,6 @@ form?.addEventListener('submit', (e) => {
     video.addEventListener('loadedmetadata', align, {once:false});
     video.addEventListener('play', () => { videos.forEach(v => v.play().catch(() => {})); align(); }, {once:true});
   });
-  window.setInterval(align, 500);
 })();
 
 /* ---------- ACTIVE NAV LINK ---------- */
@@ -209,22 +208,19 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => sectionObserver.observe(s));
 
-/* ---------- CURSOR GLOW (DESKTOP) ---------- */
-if (window.matchMedia('(pointer:fine)').matches) {
-  const glow = document.createElement('div');
-  glow.style.cssText = `
-    position:fixed;pointer-events:none;z-index:9999;
-    width:300px;height:300px;border-radius:50%;
-    background:radial-gradient(circle,oklch(68% 0.14 75 / 0.06) 0%,transparent 70%);
-    transform:translate(-50%,-50%);transition:transform .08s linear;
-    top:0;left:0;
-  `;
-  document.body.appendChild(glow);
-  window.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  }, { passive: true });
-}
+/* Cursor glow disabled for smoother scrolling and lower GPU usage. */
+
+/* ---------- CONTACT CTA ---------- */
+document.querySelectorAll('a[href="#contact"]').forEach(link => {
+  link.addEventListener('click', () => {
+    const target = document.getElementById('contact');
+    if (!target) return;
+    window.setTimeout(() => {
+      const first = target.querySelector('input,select,textarea');
+      first?.focus({preventScroll:true});
+    }, 450);
+  });
+});
 
 /* ---------- SMOOTH ANCHOR ---------- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {

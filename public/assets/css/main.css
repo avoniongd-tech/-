@@ -674,3 +674,20 @@ ul,ol{list-style:none}
 @media(max-width:900px) and (min-width:601px){
   .social-rail{right:14px;gap:10px;}
 }
+
+
+/* ===== FINAL PERFORMANCE / CONTACT PASS ===== */
+html{scroll-behavior:auto;}
+#contact{scroll-margin-top:88px;}
+.footer__social-btn{position:relative;z-index:1;display:grid;place-items:center;}
+.footer__social-btn img{position:relative;z-index:2;width:20px;height:20px;object-fit:contain;display:block;}
+.footer__social-btn span{position:relative;z-index:2;font-size:18px;line-height:1;color:currentColor;}
+/* Do not paint expensive cursor effects on touch devices. */
+@media (pointer:coarse){.hero__video,.video-section video{filter:none;}.nav__video-logo video{filter:none;}}
+@media (max-width:600px){
+  .social-rail{display:flex!important;visibility:visible!important;opacity:1!important;}
+  .social-rail .social-icon{flex:0 0 38px;}
+  .contact-wrap{gap:var(--space-8);}
+  .contact-form{padding:var(--space-5);}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.hero__video,.video-section video,.nav__video-logo video{display:none;}}
