@@ -145,6 +145,20 @@
 </style>
 </head>
 <body>
+<!-- PRELOADER: shown before the main page -->
+<div id="site-preloader" aria-label="Загрузка сайта">
+  <video id="site-preloader-video" autoplay muted playsinline preload="auto">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="site-preloader__vignette"></div>
+  <div class="site-preloader__footer">
+    <div class="site-preloader__track"><div id="site-preloader-fill"></div></div>
+    <div class="site-preloader__meta">
+      <span id="site-preloader-percent">0%</span>
+      <button id="site-preloader-skip" type="button">Пропустить</button>
+    </div>
+  </div>
+</div>
 
 <!-- SOCIAL RAIL -->
 <aside class="social-rail" aria-label="Социальные сети">

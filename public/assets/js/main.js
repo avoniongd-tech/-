@@ -1,6 +1,45 @@
 /* ===== VK RENOVATION — MAIN JS ===== */
 'use strict';
 
+/* ---------- SITE PRELOADER ---------- */
+(() => {
+  const loader = document.getElementById('site-preloader');
+  if (!loader) return;
+  const video = document.getElementById('site-preloader-video');
+  const fill = document.getElementById('site-preloader-fill');
+  const percent = document.getElementById('site-preloader-percent');
+  const skip = document.getElementById('site-preloader-skip');
+  let closed = false;
+  const started = performance.now();
+  const fallbackMs = 7200;
+
+  const close = () => {
+    if (closed) return;
+    closed = true;
+    if (fill) fill.style.width = '100%';
+    if (percent) percent.textContent = '100%';
+    loader.classList.add('is-hidden');
+    window.setTimeout(() => loader.remove(), 800);
+  };
+
+  skip?.addEventListener('click', close);
+  video?.addEventListener('ended', close);
+  video?.addEventListener('error', close);
+  video?.play?.().catch(() => {});
+
+  const tick = () => {
+    if (closed) return;
+    const duration = Number.isFinite(video?.duration) && video.duration > 0 ? video.duration : null;
+    const value = duration ? (video.currentTime / duration) * 100 : ((performance.now() - started) / fallbackMs) * 100;
+    const progress = Math.min(99, Math.max(0, value));
+    if (fill) fill.style.width = progress + '%';
+    if (percent) percent.textContent = Math.round(progress) + '%';
+    if (value >= 100) close();
+    else window.setTimeout(tick, 60);
+  };
+  tick();
+})();
+
 /* ---------- NAV SCROLL ---------- */
 const nav = document.querySelector('.nav');
 const navLinks = document.querySelector('.nav__links');

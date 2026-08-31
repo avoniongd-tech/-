@@ -1,4 +1,17 @@
 /* ===== VK RENOVATION — MAIN CSS ===== */
+/* ===== SITE PRELOADER ===== */
+#site-preloader{position:fixed;inset:0;z-index:9999;background:#0a0a0a;overflow:hidden;display:grid;place-items:center;opacity:1;visibility:visible;transition:opacity .7s ease,visibility .7s ease}
+#site-preloader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+#site-preloader-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.06)}
+.site-preloader__vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.65) 100%);pointer-events:none}
+.site-preloader__footer{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(24px,5vw,80px) 40px;z-index:2}
+.site-preloader__track{height:2px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden;margin-bottom:14px}
+#site-preloader-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-600),var(--gold-400),var(--gold-300));box-shadow:0 0 10px rgba(220,180,80,.7);transition:width .1s linear}
+.site-preloader__meta{display:flex;align-items:center;justify-content:space-between;color:var(--gold-400);font:500 11px/1 Arial,sans-serif;letter-spacing:.2em}
+#site-preloader-skip{color:var(--gold-400);background:transparent;border:1px solid var(--border-gold);padding:7px 18px;border-radius:30px;letter-spacing:.16em;text-transform:uppercase;font-size:10px}
+#site-preloader-skip:hover{background:rgba(220,180,80,.12)}
+@media(prefers-reduced-motion:reduce){#site-preloader-video{display:none}#site-preloader{transition:none}}
+
 :root {
   --gold-100: oklch(97% 0.03 85);
   --gold-300: oklch(85% 0.10 80);
