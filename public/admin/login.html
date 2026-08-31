@@ -1,7 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>Admin Login</title>
-<style>body{font-family:system-ui;margin:40px;max-width:520px;background:#0b0b0d;color:#eee}input{display:block;margin:8px 0;padding:10px;width:320px;max-width:100%;border-radius:6px;border:1px solid #555;background:#17171b;color:#fff}button{padding:10px 16px;border-radius:6px;border:1px solid #bd9850;background:#bd9850;cursor:pointer}.note{color:#aaa;font-size:.9rem}</style>
-<h3>Вход в админ-панель</h3><p class="note">Демо-доступ для локального статического редактора.</p>
-<input id="email" placeholder="admin@vk-renovation.ru">
-<input id="pass" type="password" placeholder="ChangeMe123!" autocomplete="current-password">
-<button onclick="go()">Войти</button>
-<script>function go(){if(document.getElementById('pass').value!=='ChangeMe123!'){alert('Неверный пароль');return}sessionStorage.setItem('admin_ok','1');location.href='panel.html'}</script>

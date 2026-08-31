@@ -705,22 +705,33 @@ body.menu-open{overflow:hidden;}
 }
 @media(min-width:901px){.nav__links{visibility:visible!important;opacity:1!important;pointer-events:auto!important;transform:none!important;}}
 
-/* ===== FINAL MOBILE MENU FIX ===== */
+/* ===== FINAL SECURITY + FOOTER PASS =====
+   Mobile menu is intentionally defined below all earlier media rules. */
 @media (max-width:900px){
   html,body{overflow-x:hidden;}
   body.menu-open{position:fixed;width:100%;inset:0;overflow:hidden;}
-  .nav__links,
-  .nav__links.open{
+  .nav__links,.nav__links.open{
     position:fixed!important;z-index:1005!important;top:0!important;right:0!important;bottom:0!important;left:0!important;
-    width:100vw!important;height:100dvh!important;min-height:100vh!important;
-    margin:0!important;padding:100px 24px 48px!important;
-    display:flex!important;visibility:visible!important;opacity:0!important;pointer-events:none!important;
-    transform:none!important;overflow-y:auto!important;
+    width:100vw!important;height:100dvh!important;min-height:100vh!important;margin:0!important;
+    padding:100px 24px 48px!important;display:flex!important;visibility:hidden!important;opacity:0!important;
+    pointer-events:none!important;transform:none!important;overflow-y:auto!important;
     background:rgba(5,5,7,.985)!important;backdrop-filter:none!important;
     flex-direction:column!important;align-items:center!important;justify-content:center!important;
   }
-  .nav__links.open{opacity:1!important;pointer-events:auto!important;}
+  .nav__links.open{visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
   .nav__links .nav__link{display:block!important;font-size:clamp(1.5rem,6vw,2.2rem)!important;line-height:1.1!important;text-align:center!important;}
   .nav__burger{z-index:1010!important;}
 }
 @media(min-width:901px){.nav__links{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;}}
+.footer__bottom{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;}
+.footer__legal-links{display:flex;align-items:center;justify-content:center;gap:var(--space-5);flex-wrap:wrap;}
+.footer__admin-wrap{display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;padding:var(--space-6) 0 max(var(--space-5),env(safe-area-inset-bottom))!important;}
+.footer__admin{display:inline-flex!important;align-items:center!important;justify-content:center!important;margin:0 auto!important;}
+@media(max-width:600px){
+  .footer__bottom{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-4);}
+  .footer__legal-links{width:100%;flex-direction:column;gap:var(--space-3);}
+  .footer__admin-wrap{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important;}
+  .footer__admin{margin-inline:auto!important;}
+  .social-rail{bottom:calc(12px + env(safe-area-inset-bottom))!important;}
+}
+/* The public Admin link goes to Vercel authentication; no password is exposed in site code. */
