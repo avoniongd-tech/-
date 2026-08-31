@@ -1,0 +1,1 @@
+const bcrypt=require('bcryptjs'); const password=process.argv[2]; if(!password||password.length<12){console.error('Usage: node scripts/hash-password.js "password (12+ chars)"');process.exit(1)} bcrypt.hash(password,12).then(x=>console.log(x));

@@ -1,0 +1,8 @@
+{
+  "name": "vk-renovation-site",
+  "private": true,
+  "version": "1.0.0",
+  "engines": { "node": ">=20" },
+  "scripts": { "hash-password": "node scripts/hash-password.js" },
+  "dependencies": { "bcryptjs": "^2.4.3" }
+}
