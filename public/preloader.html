@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>ВК Реновация</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#0a0a0a}
+#preloader{position:fixed;inset:0;background:#0a0a0a;z-index:9999;overflow:hidden;}
+
+/* VIDEO — fills screen, vertical video cropped to fit */
+#pre-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+  /* Slightly upscale vertical video to fill widescreen */
+  transform:none;
+  filter:none;
+}
+
+/* Dark vignette so the video feels cinematic */
+.vignette{
+  position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse at center, transparent 30%, oklch(6% 0 0 / 0.6) 100%);
+  pointer-events:none;
+}
+
+/* Bottom bar: progress + skip */
+.pre-footer{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:0 clamp(24px,5vw,80px) 40px;
+}
+.progress-track{
+  height:2px;background:oklch(100% 0 0 / 0.12);
+  border-radius:2px;overflow:hidden;margin-bottom:14px;
+}
+.progress-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg, oklch(42% 0.10 72), oklch(72% 0.14 78), oklch(88% 0.11 82));
+  border-radius:2px;
+  box-shadow:0 0 10px oklch(72% 0.14 78 / 0.7);
+  transition:width 0.1s linear;
+}
+.pre-meta{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.pre-pct{
+  font:500 11px/1 'Helvetica Neue',sans-serif;
+  letter-spacing:.2em;color:oklch(72% 0.14 78 / 0.7);
+}
+.skip-btn{
+  font:400 10px/1 'Helvetica Neue',sans-serif;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:oklch(72% 0.14 78 / 0.5);background:transparent;
+  border:1px solid oklch(72% 0.14 78 / 0.2);
+  padding:6px 18px;border-radius:30px;cursor:pointer;
+  transition:.25s;
+}
+.skip-btn:hover{
+  color:oklch(72% 0.14 78);
+  border-color:oklch(72% 0.14 78 / 0.6);
+  background:oklch(72% 0.14 78 / 0.06);
+}
+
+/* Fade-out overlay for transition */
+#fade-out{
+  position:absolute;inset:0;z-index:10;
+  background:#0a0a0a;opacity:0;pointer-events:none;
+  transition:opacity .7s ease;
+}
+</style>
+</head>
+<body>
+<div id="preloader">
+<video autoplay="" id="pre-video" muted="" playsinline="" preload="auto" src="assets/video/loading-intro.mp4">
+
+</video>
+<div class="vignette"></div>
+<div class="pre-footer">
+<div class="progress-track">
+<div class="progress-fill" id="pfill"></div>
+</div>
+<div class="pre-meta">
+<span class="pre-pct" id="ppct">0%</span>
+<button class="skip-btn" onclick="goMain()">Пропустить</button>
+</div>
+</div>
+<div id="fade-out"></div>
+</div>
+<script>
+  const video = document.getElementById('pre-video');
+  const fill  = document.getElementById('pfill');
+  const pct   = document.getElementById('ppct');
+  const fade  = document.getElementById('fade-out');
+
+  // Progress synced to video duration; fallback timer if video is slow
+  let progress = 0;
+  const TOTAL = 7200; // ~7s in ms, matches the 7-second video
+
+  const start = performance.now();
+  const iv = setInterval(() => {
+    const elapsed = performance.now() - start;
+    // Try to sync with video currentTime if available
+    if (video.duration > 0) {
+      progress = Math.min((video.currentTime / video.duration) * 100, 100);
+    } else {
+      progress = Math.min((elapsed / TOTAL) * 100, 100);
+    }
+    fill.style.width = progress + '%';
+    pct.textContent = Math.round(progress) + '%';
+
+    if (progress >= 100) {
+      clearInterval(iv);
+      setTimeout(goMain, 300);
+    }
+  }, 60);
+
+  // Also auto-go when video ends
+  video.addEventListener('ended', () => {
+    clearInterval(iv);
+    fill.style.width = '100%';
+    pct.textContent = '100%';
+    setTimeout(goMain, 300);
+  });
+
+  function goMain() {
+    clearInterval(iv);
+    fade.style.opacity = '1';
+    setTimeout(() => location.href = 'index.html', 700);
+  }
+</script>
+</body>
+</html>
