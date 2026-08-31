@@ -650,3 +650,27 @@ ul,ol{list-style:none}
 .testimonial__stars{justify-content:center;text-align:center;width:100%;}
 .testimonial{text-align:left;}
 @media(max-width:600px){.social-rail{right:10px;gap:10px}.social-icon{width:40px;height:40px}.social-icon img{width:18px;height:18px;}}
+
+/* ===== PERFORMANCE + MOBILE PASS ===== */
+/* Avoid scroll-time video transforms: this was causing repaint/judder on phones. */
+.hero__video{transform:none !important;will-change:auto;}
+.hero__video,.video-section video{contain:layout paint;}
+.portfolio-item__img{content-visibility:auto;}
+
+/* Keep the social rail accessible on phones as a compact bottom dock. */
+@media(max-width:600px){
+  .social-rail{
+    display:flex;
+    right:12px;left:12px;top:auto;bottom:12px;
+    transform:none;flex-direction:row;justify-content:center;gap:8px;
+    padding:8px 10px;border:1px solid var(--border);
+    border-radius:var(--radius-pill);background:rgba(12,12,14,.82);
+    backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.3);
+  }
+  .social-rail .social-icon{width:38px;height:38px;}
+  .social-rail .social-icon:hover{transform:translateY(-2px);}
+  body{padding-bottom:66px;}
+}
+@media(max-width:900px) and (min-width:601px){
+  .social-rail{right:14px;gap:10px;}
+}

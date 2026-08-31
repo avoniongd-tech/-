@@ -174,7 +174,7 @@
   <nav class="nav" role="navigation" aria-label="Основная навигация">
     <a href="#" class="nav__logo" aria-label="ВК Реновация — на главную">
       <span class="nav__video-logo" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video class="site-sync-video" data-sync-group="hero" autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/hero.mp4" type="video/mp4"/>
         </video>
         <span class="nav__video-logo-shine"></span>
@@ -198,7 +198,7 @@
 
 <!-- HERO -->
 <section class="hero" id="hero" aria-label="Главный экран">
-  <video class="hero__video" autoplay muted playsinline loop aria-hidden="true">
+  <video class="hero__video site-sync-video" data-sync-group="hero" autoplay muted playsinline loop preload="metadata" aria-hidden="true">
     <source src="assets/video/hero.mp4" type="video/mp4"/>
   </video>
   <div class="hero__overlay" aria-hidden="true"></div>
@@ -319,12 +319,12 @@
       <button class="filter-btn" data-cat="office">Офисы</button>
     </div>
     <div class="portfolio-grid" role="list">
-      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-1.jpg" data-title="Светлая кухня" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-1.jpg" alt="Светлая кухня — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Кухня</div><div class="portfolio-item__title">Светлая</div></div></div></div>
-      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-2.jpg" data-title="Современная спальня" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-2.jpg" alt="Современная спальня — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Спальня</div><div class="portfolio-item__title">Современная</div></div></div></div>
-      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-3.jpg" data-title="Уютная гостиная" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-3.jpg" alt="Уютная гостиная — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Гостиная</div><div class="portfolio-item__title">Уютная</div></div></div></div>
-      <div class="portfolio-item" data-cat="office" data-src="https://vk-renovation.ru/images/work-4.jpg" data-title="Функциональный кабинет" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-4.jpg" alt="Функциональный кабинет — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Кабинет</div><div class="portfolio-item__title">Функциональный</div></div></div></div>
-      <div class="portfolio-item" data-cat="house" data-src="https://vk-renovation.ru/images/work-5.jpg" data-title="Эргономичный коридор" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-5.jpg" alt="Эргономичный коридор — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Коридор</div><div class="portfolio-item__title">Эргономичный</div></div></div></div>
-      <div class="portfolio-item" data-cat="house" data-src="https://vk-renovation.ru/images/work-6.jpg" data-title="Яркая детская" role="listitem" tabindex="0"><img class="portfolio-item__img" src="https://vk-renovation.ru/images/work-6.jpg" alt="Яркая детская — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Детская</div><div class="portfolio-item__title">Яркая</div></div></div></div>
+      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-1.jpg" data-title="Светлая кухня" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-1.jpg" alt="Светлая кухня — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Кухня</div><div class="portfolio-item__title">Светлая</div></div></div></div>
+      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-2.jpg" data-title="Современная спальня" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-2.jpg" alt="Современная спальня — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Спальня</div><div class="portfolio-item__title">Современная</div></div></div></div>
+      <div class="portfolio-item" data-cat="apartment" data-src="https://vk-renovation.ru/images/work-3.jpg" data-title="Уютная гостиная" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-3.jpg" alt="Уютная гостиная — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Гостиная</div><div class="portfolio-item__title">Уютная</div></div></div></div>
+      <div class="portfolio-item" data-cat="office" data-src="https://vk-renovation.ru/images/work-4.jpg" data-title="Функциональный кабинет" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-4.jpg" alt="Функциональный кабинет — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Кабинет</div><div class="portfolio-item__title">Функциональный</div></div></div></div>
+      <div class="portfolio-item" data-cat="house" data-src="https://vk-renovation.ru/images/work-5.jpg" data-title="Эргономичный коридор" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-5.jpg" alt="Эргономичный коридор — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Коридор</div><div class="portfolio-item__title">Эргономичный</div></div></div></div>
+      <div class="portfolio-item" data-cat="house" data-src="https://vk-renovation.ru/images/work-6.jpg" data-title="Яркая детская" role="listitem" tabindex="0"><img decoding="async" class="portfolio-item__img" src="https://vk-renovation.ru/images/work-6.jpg" alt="Яркая детская — выполненный проект ВК Реновация" loading="lazy"/><div class="portfolio-item__overlay"><div class="portfolio-item__info"><div class="portfolio-item__tag">Детская</div><div class="portfolio-item__title">Яркая</div></div></div></div>
     </div>
   </div>
 </section>

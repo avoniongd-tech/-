@@ -168,14 +168,30 @@ form?.addEventListener('submit', (e) => {
   }, 1200);
 });
 
-/* ---------- PARALLAX HERO ---------- */
-const heroBg = document.querySelector('.hero__video');
-if (heroBg) {
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    heroBg.style.transform = `translateY(${y * 0.35}px)`;
-  }, { passive: true });
-}
+/* Parallax intentionally disabled: keeps video smooth on mobile. */
+
+/* ---------- SYNCHRONIZED HERO / LOGO VIDEO ---------- */
+(() => {
+  const videos = [...document.querySelectorAll('video[data-sync-group="hero"]')];
+  if (videos.length < 2) return;
+  let syncing = false;
+  const align = () => {
+    const master = videos[1];
+    if (!master || !Number.isFinite(master.currentTime)) return;
+    videos.forEach(video => {
+      if (video !== master && Math.abs(video.currentTime - master.currentTime) > 0.08) {
+        try { video.currentTime = master.currentTime; } catch (_) {}
+      }
+    });
+  };
+  videos.forEach(video => {
+    video.muted = true;
+    video.playsInline = true;
+    video.addEventListener('loadedmetadata', align, {once:false});
+    video.addEventListener('play', () => { videos.forEach(v => v.play().catch(() => {})); align(); }, {once:true});
+  });
+  window.setInterval(align, 500);
+})();
 
 /* ---------- ACTIVE NAV LINK ---------- */
 const sections = document.querySelectorAll('section[id]');
