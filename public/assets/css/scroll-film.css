@@ -1,0 +1,23 @@
+/* ===== SCROLL FILM / BUILDING STORY ===== */
+.scroll-film{position:relative;background:var(--surface-0);color:var(--text-primary);}
+.scroll-film__stage{position:relative;height:300vh;}
+.scroll-film__sticky{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden;background:#0a0a0b;isolation:isolate;}
+.scroll-film__canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;image-rendering:auto;background:#0a0a0b url("assets/img/video_poster.jpg") center/cover no-repeat;}
+.scroll-film__shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,8,9,.9) 0%,rgba(8,8,9,.38) 48%,rgba(8,8,9,.2) 100%),linear-gradient(0deg,rgba(8,8,9,.9),transparent 55%);pointer-events:none;}
+.scroll-film__top{position:absolute;top:clamp(100px,14vh,150px);left:clamp(20px,8vw,110px);right:clamp(20px,8vw,110px);display:flex;justify-content:space-between;align-items:start;gap:28px;z-index:2;pointer-events:none;}
+.scroll-film__kicker{color:var(--gold-400);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;}
+.scroll-film__counter{font:400 clamp(2rem,4vw,4rem)/1 var(--font-display);color:var(--gold-300);white-space:nowrap;}
+.scroll-film__content{position:absolute;left:clamp(20px,8vw,110px);bottom:clamp(48px,12vh,130px);max-width:min(600px,calc(100% - 40px));z-index:2;}
+.scroll-film__content h2{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,6rem);line-height:.92;font-weight:400;margin:16px 0 20px;letter-spacing:-.03em;}
+.scroll-film__content p{max-width:480px;color:var(--text-secondary);font-size:clamp(.95rem,1.5vw,1.1rem);margin:0;}
+.scroll-film__timeline{position:absolute;left:clamp(20px,8vw,110px);right:clamp(20px,8vw,110px);bottom:30px;height:1px;background:rgba(255,255,255,.22);z-index:3;}
+.scroll-film__progress{height:2px;width:0;background:var(--gold-400);transform:translateY(-.5px);transform-origin:left;}
+.scroll-film__labels{display:flex;justify-content:space-between;margin-top:12px;color:rgba(255,255,255,.6);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;}
+.scroll-film__hint{position:absolute;right:clamp(20px,8vw,110px);bottom:clamp(80px,16vh,180px);writing-mode:vertical-rl;color:rgba(255,255,255,.6);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;z-index:2;}
+.scroll-film__grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.08;background-image:url("assets/img/gold_noise.png");mix-blend-mode:screen;}
+@media(max-width:700px){
+ .scroll-film__stage{height:260vh}.scroll-film__sticky{min-height:560px}
+ .scroll-film__top{top:92px}.scroll-film__hint{display:none}.scroll-film__content h2{font-size:clamp(2.4rem,13vw,4.3rem)}
+ .scroll-film__content{bottom:82px}.scroll-film__labels{font-size:.54rem}
+}
+@media(prefers-reduced-motion:reduce){.scroll-film__stage{height:auto}.scroll-film__sticky{position:relative;height:auto;min-height:520px}.scroll-film__canvas{display:none}.scroll-film__sticky{background:linear-gradient(135deg,#151312,#08090a)}}

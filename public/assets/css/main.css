@@ -734,7 +734,10 @@ body.menu-open{overflow:hidden;}
   .footer__admin{margin-inline:auto!important;}
   .social-rail{bottom:calc(12px + env(safe-area-inset-bottom))!important;}
 }
-/* ===== UNIFIED SOCIAL ICONS ===== */
+/* ===== VIDEO SCROLL STORY ===== */
+.video-section{content-visibility:auto;contain-intrinsic-size:420px;}
+.video-section video{preload:metadata;}
+
 .social-rail{gap:12px;}
 .social-icon{
   width:46px;height:46px;border-radius:50%;
