@@ -13,6 +13,11 @@
   const started = performance.now();
   const fallbackMs = 4500;
 
+  if (sessionStorage.getItem('vk_preloader_seen') === '1') {
+    loader.remove();
+    return;
+  }
+
   const close = () => {
     if (closed) return;
     closed = true;
