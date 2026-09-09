@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a1a1a">
+  <meta name="description" content="ВК Реновация — премиальный ремонт квартир, домов и таунхаусов в Санкт-Петербурге и Ленинградской области.">
+  <title>ВК Реновация — премиальный ремонт под ключ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="assets/vendor/tailwindcss.js"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter Tight','sans-serif'],mono:['DM Mono','monospace']},colors:{graphite:'#1A1A1A',terracotta:'#C87A53'}}}};</script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter Tight','sans-serif'],mono:['DM Mono','monospace']},colors:{graphite:'#1A1A1A',terracotta:'#C87A53'}}}};</script>
+  <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+  <div class="site-loader" aria-hidden="true"><span class="site-loader__line"></span><span class="site-loader__counter">00</span></div>
+
+  <header class="site-nav" data-nav>
+    <a class="brand" href="#top" aria-label="ВК Реновация — на главную">
+      <span class="brand__mark">VK</span><span class="brand__name">РЕНОВАЦИЯ</span>
+    </a>
+    <div class="site-nav__meta"><span>СПБ / 2026</span><span class="site-nav__dot"></span><span>СТРОИМ СМЫСЛ</span></div>
+    <a class="nav-action" href="#estimate">Рассчитать проект <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <!-- SCREEN 1: HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__sticky">
+        <video class="hero__media" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero_poster.jpg" aria-hidden="true">
+          <source src="assets/video/preloader.mp4" type="video/mp4">
+        </video>
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__hud font-mono"><span>48°43' N</span><span>СПБ / ОБЪЕКТ 001</span></div>
+        <div class="hero__content">
+          <p class="eyebrow">01 / РЕМОНТ И СТРОИТЕЛЬСТВО</p>
+          <h1 id="hero-title">Премиальный<br><em>ремонт</em> под ключ</h1>
+          <p class="hero__lead">Квартиры. Дома. Таунхаусы.<br>От первого чертежа до последнего светильника.</p>
+          <a class="button button--solid" href="#estimate">Рассчитать стоимость <span>↗</span></a>
+        </div>
+        <div class="hero__footer"><span>ВК Реновация</span><span class="hero__scroll-mark">SCROLL <i></i></span><span>САНКТ-ПЕТЕРБУРГ</span></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: OBJECT SELECTOR -->
+    <section class="objects" id="objects" aria-labelledby="objects-title">
+      <div class="objects__pin">
+        <div class="objects__intro">
+          <p class="eyebrow">02 / ТИП ПРОСТРАНСТВА</p>
+          <h2 id="objects-title">У каждого<br><em>объекта</em> свой<br>характер.</h2>
+          <p class="objects__hint">Прокрутите, чтобы выбрать сценарий. Мы проектируем не квадратные метры — мы проектируем образ жизни.</p>
+        </div>
+        <div class="object-selector" aria-label="Тип объекта">
+          <button class="object-selector__item is-active" data-object="0"><span>01</span><strong>Квартира</strong><small>Звукоизоляция · свет · ритм</small></button>
+          <button class="object-selector__item" data-object="1"><span>02</span><strong>Загородный дом</strong><small>Инженерия · фасады · ландшафт</small></button>
+          <button class="object-selector__item" data-object="2"><span>03</span><strong>Таунхаус</strong><small>Лестницы · кровля · сценарии</small></button>
+        </div>
+        <div class="object-visual">
+          <div class="object-visual__stamp font-mono"><span>OBJECT</span><b>001—003</b></div>
+          <div class="object-visual__frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="object-image is-active" data-image="0"><img src="assets/img/gallery_01.jpg" alt="Современный интерьер квартиры" loading="lazy"></div>
+          <div class="object-image" data-image="1"><img src="assets/img/gallery_06.jpg" alt="Интерьер загородного дома" loading="lazy"></div>
+          <div class="object-image" data-image="2"><img src="assets/img/gallery_10.jpg" alt="Интерьер таунхауса" loading="lazy"></div>
+          <div class="object-visual__label"><span class="font-mono">/ 2026</span><strong data-object-label>Квартира</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: BEFORE / AFTER -->
+    <section class="transformation" id="transformation" aria-labelledby="transformation-title">
+      <div class="transformation__pin">
+        <div class="transformation__heading">
+          <p class="eyebrow">03 / МАТЕРИАЛИЗАЦИЯ</p>
+          <h2 id="transformation-title">Из состояния<br>в <em>состояние.</em></h2>
+        </div>
+        <div class="ba-layout">
+          <div class="ba-copy">
+            <p class="ba-copy__index font-mono">CASE / 024</p>
+            <div class="ba-step is-active" data-ba-step="0"><span>01</span><div><b>Освобождаем</b><p>Демонтаж, обмеры и точная фиксация исходных данных.</p></div></div>
+            <div class="ba-step" data-ba-step="1"><span>02</span><div><b>Собираем</b><p>Инженерная основа, геометрия, свет и чистовые материалы.</p></div></div>
+            <div class="ba-step" data-ba-step="2"><span>03</span><div><b>Передаём</b><p>Интерьер готов к жизни. Без компромиссов и случайностей.</p></div></div>
+          </div>
+          <div class="ba-stage" aria-label="Сравнение помещения до и после ремонта">
+            <div class="ba-image ba-image--before"><img src="assets/img/brick_placeholder.jpg" alt="Помещение до ремонта"></div>
+            <div class="ba-image ba-image--after"><img src="assets/img/gen4_1600.webp" alt="Помещение после ремонта"></div>
+            <div class="ba-divider"><span>↔</span></div>
+            <span class="ba-label ba-label--before">ДО</span><span class="ba-label ba-label--after">ПОСЛЕ</span>
+          </div>
+        </div>
+        <div class="transformation__progress"><span></span></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: HORIZONTAL PORTFOLIO -->
+    <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="portfolio__pin">
+        <header class="portfolio__header"><div><p class="eyebrow">04 / ИЗБРАННЫЕ ОБЪЕКТЫ</p><h2 id="portfolio-title">Сделано<br><em>материально.</em></h2></div><p class="portfolio__note">Потяните взглядом<br>вправо <span>→</span></p></header>
+        <div class="portfolio__track-wrap"><div class="portfolio__track">
+          <article class="case-card case-card--wide"><div class="case-card__image"><img src="assets/img/gen1_1600.webp" alt="Проект квартиры в Петроградском районе" loading="lazy"><span class="case-card__number font-mono">01</span></div><div class="case-card__body"><p class="font-mono">ПЕТРОГРАДСКИЙ РАЙОН / 2026</p><h3>Тихая геометрия</h3><dl><div><dt>Площадь</dt><dd>86 м²</dd></div><div><dt>Срок</dt><dd>5 месяцев</dd></div><div><dt>Бюджет</dt><dd>от 7,8 млн ₽</dd></div></dl></div></article>
+          <article class="case-card"><div class="case-card__image"><img src="assets/img/gen2_1600.webp" alt="Проект современного дома" loading="lazy"><span class="case-card__number font-mono">02</span></div><div class="case-card__body"><p class="font-mono">РЕПИНО / 2025</p><h3>Дом в соснах</h3><dl><div><dt>Площадь</dt><dd>214 м²</dd></div><div><dt>Срок</dt><dd>8 месяцев</dd></div><div><dt>Бюджет</dt><dd>от 19 млн ₽</dd></div></dl></div></article>
+          <article class="case-card case-card--tall"><div class="case-card__image"><img src="assets/img/gen5_1600.webp" alt="Проект таунхауса" loading="lazy"><span class="case-card__number font-mono">03</span></div><div class="case-card__body"><p class="font-mono">КУРТНЫЙ / 2025</p><h3>Вертикальный ритм</h3><dl><div><dt>Площадь</dt><dd>168 м²</dd></div><div><dt>Срок</dt><dd>7 месяцев</dd></div><div><dt>Бюджет</dt><dd>от 14,2 млн ₽</dd></div></dl></div></article>
+          <article class="case-card"><div class="case-card__image"><img src="assets/img/gen7_1600.webp" alt="Проект кухни-гостиной" loading="lazy"><span class="case-card__number font-mono">04</span></div><div class="case-card__body"><p class="font-mono">КРЕСТОВСКИЙ / 2024</p><h3>Свет как материал</h3><dl><div><dt>Площадь</dt><dd>124 м²</dd></div><div><dt>Срок</dt><dd>6 месяцев</dd></div><div><dt>Бюджет</dt><dd>от 11,4 млн ₽</dd></div></dl></div></article>
+          <div class="portfolio__end"><span class="font-mono">04 / 04</span><strong>Ваш объект<br>может быть здесь.</strong><a href="#estimate" class="button button--outline">Обсудить проект ↗</a></div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: ESTIMATE / FOOTER -->
+    <section class="estimate" id="estimate" aria-labelledby="estimate-title">
+      <div class="estimate__grid" aria-hidden="true"></div>
+      <div class="estimate__inner">
+        <div class="estimate__copy"><p class="eyebrow">05 / СЛЕДУЮЩИЙ ШАГ</p><h2 id="estimate-title">Давайте<br><em>построим</em><br>ваше пространство.</h2><p>Оставьте контакты — обсудим задачу, покажем релевантные кейсы и подготовим ориентир по бюджету.</p><div class="estimate__contacts"><a href="tel:+78126423247">+7 812 642-32-47</a><a href="mailto:vk_renovation@mail.ru">vk_renovation@mail.ru</a></div></div>
+        <form class="estimate-form" id="estimate-form"><label>Тип объекта<select name="object" required><option value="">Выберите объект</option><option>Квартира</option><option>Загородный дом</option><option>Таунхаус</option></select></label><label>Площадь<input name="area" type="number" min="1" max="10000" placeholder="м²" required></label><label>Телефон<input name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></label><label class="estimate-form__consent"><input name="consent" type="checkbox" required><span>Соглашаюсь на обработку персональных данных</span></label><button class="button button--solid" type="submit">Получить ориентир <span>↗</span></button><p class="form-status" role="status" aria-live="polite"></p></form>
+      </div>
+      <footer class="site-footer"><span>© 2026 ВК Реновация</span><span>Ремонт, который становится архитектурой</span><a href="#top">Наверх ↑</a></footer>
+    </section>
+  </main>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/js/landing.js"></script>
+</body>
+</html>
