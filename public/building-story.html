@@ -2,174 +2,81 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0f0f0f">
-  <meta name="description" content="ВК Реновация — дом, который строится на глазах. Архитектурная нарративность вместо эффектов.">
-  <title>ВК Реновация — дом строится на глазах</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/building-story-v2-ui.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>История строительства | Кейс из портфолио</title>
+  <meta name="description" content="Интерактивное повествование о 7 этапах строительства проекта от участка до интерьера.">
+  <link rel="stylesheet" href="/assets/css/building-story-v2-ui.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: #0f0f0f; scroll-behavior: smooth; }
     body {
-      background: #0f0f0f;
-      color: rgba(242,238,232,.9);
-      font-family: 'Inter Tight', sans-serif;
-      font-weight: 400;
-      line-height: 1.4;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
-    
-    /* Header */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 60px;
-      padding: 0 clamp(20px,5vw,80px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(15,15,15,.9);
-      border-bottom: 1px solid rgba(224,162,126,.12);
-      backdrop-filter: blur(10px);
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     
-    .brand {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(242,238,232,.95);
-    }
-    
-    .brand-accent {
-      color: hsl(30 65% 50%);
-      margin-right: 4px;
-    }
-    
-    /* Main container */
-    main {
-      padding-top: 60px;
-    }
-    
-    /* Intro */
-    .intro {
-      position: relative;
-      min-height: 100vh;
-      padding: clamp(40px, 8vw, 120px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .building-story-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
       text-align: center;
-      background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
-      border-bottom: 1px solid rgba(224,162,126,.12);
     }
     
-    .intro-content {
+    .building-story-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      color: hsl(0 0% 18%);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .building-story-header h1 {
+        color: hsl(0 0% 95%);
+      }
+    }
+    
+    .building-story-header p {
+      font-size: 1.125rem;
+      color: hsl(0 0% 45%);
+      margin: 0;
       max-width: 600px;
+      margin: 0 auto;
     }
     
-    .intro-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: hsl(30 65% 50%);
-      text-transform: uppercase;
-      margin-bottom: 24px;
+    @media (prefers-color-scheme: dark) {
+      .building-story-header p {
+        color: hsl(0 0% 55%);
+      }
     }
     
-    .intro-title {
-      font-size: clamp(48px, 8vw, 84px);
-      font-weight: 300;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      color: rgba(242,238,232,.95);
-    }
-    
-    .intro-title em {
-      font-style: normal;
-      color: hsl(30 65% 50%);
-    }
-    
-    .intro-desc {
-      font-size: 16px;
-      color: rgba(242,238,232,.65);
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-    
-    .intro-hint {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: rgba(242,238,232,.4);
-      text-transform: uppercase;
-      opacity: 0.6;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-    }
-    
-    /* Footer */
-    .site-footer {
-      padding: clamp(40px, 8vw, 80px);
+    .building-story-footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
       text-align: center;
-      border-top: 1px solid rgba(224,162,126,.12);
-      color: rgba(242,238,232,.5);
-      font-size: 12px;
-      line-height: 1.6;
+      border-top: 1px solid hsl(0 0% 88%);
+      font-size: 0.875rem;
+      color: hsl(0 0% 45%);
     }
     
-    .site-footer a {
-      color: hsl(30 65% 50%);
-      transition: color 0.3s;
-    }
-    
-    .site-footer a:hover {
-      color: hsl(30 70% 60%);
+    @media (prefers-color-scheme: dark) {
+      .building-story-footer {
+        border-top-color: hsl(0 0% 24%);
+        color: hsl(0 0% 55%);
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#"><span class="brand-accent">VK</span>РЕНОВАЦИЯ</a>
-    <a class="brand" href="#building" style="font-size:10px; color:rgba(242,238,232,.6);">Смотреть →</a>
-  </header>
+  <div class="building-story-header">
+    <h1>История строительства</h1>
+    <p>Прокрутите страницу, чтобы увидеть 7 этапов проекта — от земли до готового интерьера.</p>
+  </div>
 
-  <main>
-    <section class="intro">
-      <div class="intro-content">
-        <p class="intro-label">Архитектурная нарративность</p>
-        <h1 class="intro-title">Дом, который<br><em>строится</em><br>на глазах</h1>
-        <p class="intro-desc">
-          От участка до интерьера. Каждый этап показывает этап работ ВК Реновация.
-        </p>
-        <p class="intro-hint">Прокрутите вниз ↓</p>
-      </div>
-    </section>
+  <div data-building-story></div>
 
-    <section id="building" data-building-story></section>
+  <div class="building-story-footer">
+    <p>Интерактивный проект демонстрирует подход к созданию поэтапных нарративов с использованием CSS 2.5D и scroll-driven анимации.</p>
+  </div>
 
-    <section class="site-footer">
-      <p>© 2026 ВК Реновация</p>
-      <p>Ремонт, который становится архитектурой</p>
-      <p><a href="tel:+78126423247">+7 812 642-32-47</a> | <a href="mailto:hello@vk-renovation.ru">hello@vk-renovation.ru</a></p>
-    </section>
-  </main>
-
-  <script src="assets/vendor/gsap.min.js"></script>
-  <script src="assets/vendor/ScrollTrigger.min.js"></script>
-  <script src="assets/js/building-story-v2.js"></script>
+  <script src="/assets/js/building-story-v2.js"></script>
 </body>
 </html>

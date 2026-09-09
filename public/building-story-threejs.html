@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a1a1a">
+  <meta name="description" content="Дом, который строится на глазах — интерактивная история процесса ремонта ВК Реновация.">
+  <title>Как строится дом | ВК Реновация</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --bg-deep: #0f1111;
+      --text: #f2eee8;
+      --muted: #a9a7a0;
+      --accent: #c87a53;
+      --accent-light: #e0a27e;
+      --line: rgba(242, 238, 232, 0.15);
+      --sans: 'Inter Tight', Arial, sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+    body { line-height: 1.4; }
+    
+    .building-hero {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+      background: var(--bg-deep);
+      overflow: hidden;
+    }
+    
+    #building-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .building-canvas-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      background: linear-gradient(135deg, rgba(200, 122, 83, 0.1) 0%, rgba(200, 122, 83, 0.05) 100%);
+      opacity: 0.5;
+    }
+    
+    body.no-webgl .building-canvas-fallback { display: block; }
+    body.no-webgl #building-canvas { display: none; }
+    
+    .building-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 78px;
+      padding: 0 clamp(20px, 4vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    
+    .building-nav.is-scrolled {
+      background: rgba(26, 26, 26, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    
+    .nav-brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--text);
+    }
+    
+    .nav-mark {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font: 500 11px var(--mono);
+      letter-spacing: -0.08em;
+    }
+    
+    .nav-label {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      color: rgba(242, 238, 232, 0.6);
+      font: 10px var(--mono);
+      letter-spacing: 0.1em;
+    }
+    
+    .nav-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    
+    .nav-action {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 4px;
+      transition: color 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    
+    .nav-action:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+    
+    .building-menu {
+      position: fixed;
+      left: clamp(20px, 4vw, 64px);
+      top: 120px;
+      z-index: 50;
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .menu-stage {
+      display: grid;
+      gap: 8px;
+    }
+    
+    .menu-label {
+      font: 9px var(--mono);
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    
+    .menu-item {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    
+    .menu-item.is-active {
+      background: rgba(200, 122, 83, 0.15);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    
+    .menu-item:hover:not(.is-active) {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    
+    .building-scroll-hint {
+      position: fixed;
+      bottom: clamp(28px, 6vh, 72px);
+      left: clamp(20px, 4vw, 64px);
+      font: 10px var(--mono);
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeInOut 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes fadeInOut { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+    
+    .building-content {
+      position: relative;
+      z-index: 2;
+      min-height: 800vh;
+      background: transparent;
+      padding-top: 100vh;
+    }
+    
+    .content-section {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 60px clamp(20px, 7vw, 110px);
+      border-bottom: 1px solid var(--line);
+      opacity: 0.5;
+      transition: opacity 0.4s;
+    }
+    
+    .content-section.is-active { opacity: 1; }
+    
+    .section-text h2 {
+      font-size: clamp(48px, 6vw, 100px);
+      font-weight: 300;
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+      margin-bottom: 30px;
+    }
+    
+    .section-text p {
+      max-width: 560px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    
+    .section-meta {
+      font: 11px var(--mono);
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    
+    @media (max-width: 900px) {
+      .building-menu { display: none; }
+      .building-scroll-hint { display: none; }
+      .building-canvas-fallback { display: block !important; }
+      #building-canvas { max-width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="building-nav" data-nav>
+    <div class="nav-brand">
+      <div class="nav-mark">VK</div>
+      <span>РЕНОВАЦИЯ</span>
+    </div>
+    <div class="nav-label">
+      <span>СПБ / 2026</span>
+      <div class="nav-dot"></div>
+      <span>ДОМ СТРОИТСЯ</span>
+    </div>
+    <a class="nav-action" href="#estimate">Заказать проект ↗</a>
+  </nav>
+
+  <div class="building-hero">
+    <canvas id="building-canvas"></canvas>
+    <div class="building-canvas-fallback"></div>
+  </div>
+
+  <aside class="building-menu">
+    <div class="menu-stage">
+      <div class="menu-label">Этапы</div>
+      <button class="menu-item is-active" data-layer="0">Участок</button>
+      <button class="menu-item" data-layer="1">Фундамент</button>
+      <button class="menu-item" data-layer="2">Каркас</button>
+      <button class="menu-item" data-layer="3">Инженерия</button>
+      <button class="menu-item" data-layer="4">Оболочка</button>
+      <button class="menu-item" data-layer="5">Отделка</button>
+      <button class="menu-item" data-layer="6">Финиш</button>
+    </div>
+  </aside>
+
+  <div class="building-scroll-hint">SCROLL ↓</div>
+
+  <main class="building-content">
+    <section class="content-section is-active" data-section="0">
+      <div class="section-text">
+        <p class="section-meta">01 / УЧАСТОК</p>
+        <h2>Проект начинается с земли</h2>
+        <p>Мы анализируем уклоны, ориентацию по сторонам света, глубину залегания грунтовых вод. Участок — это не фон, это персонаж истории дома.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="1">
+      <div class="section-text">
+        <p class="section-meta">02 / ФУНДАМЕНТ</p>
+        <h2>На чём всё стоит</h2>
+        <p>Фундамент — основание. Мы выбираем тип исходя из грунта, нагрузок и климата. Здесь нет компромиссов, только расчёты и качество.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="2">
+      <div class="section-text">
+        <p class="section-meta">03 / КАРКАС</p>
+        <h2>Скелет дома обретает форму</h2>
+        <p>Стены, перекрытия, крыша. Каркас — это когда воздух впервые приобретает границы. Когда дом становится видимым.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="3">
+      <div class="section-text">
+        <p class="section-meta">04 / ИНЖЕНЕРИЯ</p>
+        <h2>Внутри стен — жизнь</h2>
+        <p>Электропроводка, отопление, вода, газ, вентиляция. Это то, что не видно, но от чего зависит каждый день жизни в доме.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="4">
+      <div class="section-text">
+        <p class="section-meta">05 / ОБОЛОЧКА</p>
+        <h2>Дом учится защищать</h2>
+        <p>Гидроизоляция, теплоизоляция, пароизоляция. Оболочка отделяет внутреннее пространство от внешнего мира, создавая комфорт.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="5">
+      <div class="section-text">
+        <p class="section-meta">06 / ОТДЕЛКА</p>
+        <h2>Здесь начинается характер</h2>
+        <p>Штукатурка, краска, плитка, паркет. Материалы рассказывают историю вашего вкуса. Каждая поверхность — это выбор.</p>
+      </div>
+    </section>
+    
+    <section class="content-section" data-section="6">
+      <div class="section-text">
+        <p class="section-meta">07 / ФИНИШ</p>
+        <h2>Дом готов к жизни</h2>
+        <p>Мебель, свет, последние штрихи. Здесь холодное пространство становится домом — местом, где будут события, воспоминания, жизнь.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const nav = document.querySelector('[data-nav]');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const contentSections = document.querySelectorAll('.content-section');
+    
+    let currentLayer = 0;
+    
+    function updateNav() {
+      nav.classList.toggle('is-scrolled', window.scrollY > 40);
+    }
+    
+    function updateSection() {
+      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      const sectionIndex = Math.floor(scrollPercent * 7);
+      const activeIndex = Math.min(6, Math.max(0, sectionIndex));
+      
+      if (activeIndex !== currentLayer) {
+        currentLayer = activeIndex;
+        menuItems.forEach((el, i) => el.classList.toggle('is-active', i === activeIndex));
+        contentSections.forEach((el, i) => el.classList.toggle('is-active', i === activeIndex));
+      }
+    }
+    
+    menuItems.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        const targetSection = document.querySelector(`[data-section="${i}"]`);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    
+    window.addEventListener('scroll', () => {
+      updateNav();
+      updateSection();
+    }, { passive: true });
+    
+    updateNav();
+    updateSection();
+  </script>
+</body>
+</html>
