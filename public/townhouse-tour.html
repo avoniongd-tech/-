@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#151515"><title>Таунхаус / 360° тур — ВК Реновация</title>
+<link rel="stylesheet" href="assets/css/townhouse-tour.css">
+</head>
+<body>
+<header class="tour-nav"><a class="tour-brand" href="index.html"><b>VK</b><span>РЕНОВАЦИЯ</span></a><div class="tour-nav__meta">ТАУНХАУС / ОБЪЕКТ 024</div><button class="tour-close" type="button" data-exit>Выйти из тура ↗</button></header>
+<main class="tour-app">
+  <section class="tour-viewer" aria-label="Интерактивный 360 градусов тур">
+    <canvas id="tour-canvas"></canvas><div class="tour-vignette"></div><div class="tour-loader"><span></span><b>ЗАГРУЗКА СЦЕНЫ</b></div>
+    <div class="tour-hud tour-hud--top"><span class="tour-kicker">360° / ВИРТУАЛЬНЫЙ ТУР</span><span class="tour-scene-count"><b data-scene-index>01</b> / 06</span></div>
+    <div class="tour-room-title"><span class="tour-kicker">СЦЕНА <i data-scene-code>01</i></span><h1 data-scene-title>Входная группа</h1><p data-scene-copy>Первое впечатление о доме: натуральный камень, тёплый свет и точная геометрия.</p></div>
+    <div class="tour-hotspots" aria-live="polite"></div>
+    <div class="tour-controls"><button type="button" data-control="zoom-out" aria-label="Отдалить">−</button><button type="button" data-control="zoom-in" aria-label="Приблизить">+</button><button type="button" data-control="reset" aria-label="Сбросить ракурс">↺</button></div>
+    <div class="tour-drag-hint"><span>↔</span> ПОТЯНИТЕ, ЧТОБЫ ОСМОТРЕТЬ</div>
+    <div class="tour-bottom"><div class="tour-rooms" aria-label="Комнаты"></div><div class="tour-progress"><span></span></div></div>
+  </section>
+  <aside class="tour-info" aria-live="polite"><button class="tour-info__close" type="button" data-info-close>×</button><span class="tour-kicker">ДЕТАЛЬ ПРОЕКТА</span><h2 data-info-title>Дубовый шпон</h2><p data-info-text>Тёплая фактура, которая связывает архитектуру и мебель в единое пространство.</p><div class="tour-info__meta" data-info-meta>МАТЕРИАЛ / ОТДЕЛКА</div><img data-info-image src="assets/img/gen1_400.webp" alt="Материал в проекте"><a href="index.html#portfolio">Смотреть реальный проект ↗</a></aside>
+</main>
+<footer class="tour-footer"><span>ВК Реновация</span><span>Квартиры · Дома · Таунхаусы</span><button type="button" data-sound>Звук: выкл.</button></footer>
+<script src="assets/js/townhouse-tour.js"></script>
+</body></html>
