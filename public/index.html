@@ -12,6 +12,14 @@
 <link rel="stylesheet" href="assets/css/scroll-film.css"/>
 <link rel="stylesheet" href="assets/css/material-wow.css"/>
 <style>
+/* 360° townhouse tour entry point */
+.nav__link--tour{color:var(--gold-300)!important;border-bottom:1px solid var(--gold-500)}
+.btn--tour{border-color:var(--gold-500);color:var(--gold-300);position:relative;overflow:hidden}
+.btn--tour:before{content:'НОВЫЙ ОПЫТ';position:absolute;top:-9px;right:10px;padding:2px 5px;background:var(--gold-500);color:var(--surface-0);font:500 7px/1 var(--font-body);letter-spacing:.1em}
+.btn--tour:hover{background:var(--gold-500);color:var(--surface-0);border-color:var(--gold-500)}
+@media(max-width:900px){.nav__link--tour{color:var(--gold-300)!important}.btn--tour{width:100%;justify-content:center}}
+</style>
+<style>
 /* ===== LIGHTBOX ===== */
 #lightbox{
   position:fixed;inset:0;z-index:1000;
@@ -187,6 +195,7 @@
       <li><a href="#services" class="nav__link">Услуги</a></li>
       <li><a href="#portfolio" class="nav__link">Портфолио</a></li>
       <li><a href="#building-story" class="nav__link">Как строим</a></li>
+      <li><a href="townhouse-tour.html" class="nav__link nav__link--tour">360° тур</a></li>
       <li><a href="#about" class="nav__link">О нас</a></li>
       <li><a href="#process" class="nav__link">Процесс</a></li>
       <li><a href="#articles" class="nav__link">Статьи</a></li>
@@ -221,6 +230,9 @@
       <a href="#contact" class="btn btn--primary">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Получить смету
+      </a>
+      <a href="townhouse-tour.html" class="btn btn--outline btn--tour" aria-label="Открыть интерактивный 360 градусов тур по таунхаусу">
+        360° тур по таунхаусу <span aria-hidden="true">↗</span>
       </a>
       <a href="#portfolio" class="btn btn--outline">Смотреть работы</a>
     </div>
