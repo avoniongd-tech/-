@@ -156,8 +156,7 @@
 <body>
 <!-- PRELOADER: shown before the main page -->
 <div id="site-preloader" aria-label="Загрузка сайта">
-  <video id="site-preloader-video" autoplay muted playsinline preload="auto" poster="assets/img/video_poster.jpg">
-    <source src="assets/video/preloader.mp4" type="video/mp4">
+  <video id="site-preloader-video" autoplay muted playsinline preload="none" poster="assets/img/video_poster.jpg">
   </video>
   <div class="site-preloader__vignette"></div>
   <div class="site-preloader__footer">
@@ -183,8 +182,7 @@
   <nav class="nav" role="navigation" aria-label="Основная навигация">
     <a href="#" class="nav__logo" aria-label="ВК Реновация — на главную">
       <span class="nav__video-logo" aria-hidden="true">
-        <video class="site-sync-video" data-sync-group="hero" autoplay muted loop playsinline preload="metadata" poster="assets/img/video_poster.jpg">
-          <source src="assets/video/hero.mp4" type="video/mp4"/>
+        <video class="site-sync-video" data-sync-group="hero" muted loop playsinline preload="none" poster="assets/img/video_poster.jpg">
         </video>
         <span class="nav__video-logo-shine"></span>
       </span>
@@ -208,8 +206,7 @@
 
 <!-- HERO -->
 <section class="hero" id="hero" aria-label="Главный экран">
-  <video class="hero__video site-sync-video" data-sync-group="hero" autoplay muted playsinline loop preload="auto" poster="assets/img/video_poster.jpg" aria-hidden="true">
-    <source src="assets/video/hero.mp4" type="video/mp4"/>
+  <video class="hero__video site-sync-video" data-sync-group="hero" muted playsinline loop preload="none" poster="assets/img/video_poster.jpg" aria-hidden="true">
   </video>
   <div class="hero__overlay" aria-hidden="true"></div>
   <div class="hero__content">
@@ -410,8 +407,7 @@
 
 <!-- VIDEO SECTION -->
 <div class="video-section" aria-hidden="true">
-  <video autoplay muted playsinline loop preload="none" poster="assets/img/video_poster.jpg">
-    <source src="assets/video/hero.mp4" type="video/mp4"/>
+  <video autoplay muted playsinline loop preload="none" poster="assets/img/video_poster.jpg" aria-hidden="true">
   </video>
   <div class="video-section__overlay"></div>
   <div class="video-section__content reveal">
@@ -742,7 +738,7 @@
       <div class="footer__legal-links">
         <a href="policy.html" class="footer__policy">Политика конфиденциальности</a>
         <a href="offer.html" class="footer__policy">Договор оферты</a>
-        <a href="sources.html" class="footer__policy">Источники и лицензии</a>
+<li><a href="sources.html" class="footer__policy">Источники</a></li>
       </div>
     </div>
     <div class="footer__admin-wrap">
