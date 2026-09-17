@@ -30,9 +30,9 @@ function animateNum(el, to){
   function step(t){const p = Math.min(1,(t-t0)/dur); el.textContent = Math.floor(start + (to-start)*p).toLocaleString('ru-RU'); if(p<1) requestAnimationFrame(step);}
   requestAnimationFrame(step);
 }
-fetch('assets/data/content.json').then(r=>r.json()).then(cfg=>{
-  const s = cfg.stats||{years:0,projects:0,clients:0};
+fetch('/data/content.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(cfg=>{
+  const s = cfg?.stats||{years:0,projects:0,clients:0};
   const yearsEl = document.querySelector('[data-stat="years"]'); const projEl=document.querySelector('[data-stat="projects"]'); const cliEl=document.querySelector('[data-stat="clients"]');
-  const io2=new IntersectionObserver((es)=>{if(es[0].isIntersecting){animateNum(yearsEl,s.years||0);animateNum(projEl,s.projects||0);animateNum(cliEl,s.clients||0); io2.disconnect();}}, {threshold:.5});
-  const box=document.getElementById('stats'); if(box) io2.observe(box);
-});
+  const box=document.getElementById('stats'); if(!box || !yearsEl || !projEl || !cliEl) return;
+  const io2=new IntersectionObserver((es)=>{if(es[0].isIntersecting){animateNum(yearsEl,s.years||0);animateNum(projEl,s.projects||0);animateNum(cliEl,s.clients||0); io2.disconnect();}}, {threshold:.5}); io2.observe(box);
+}).catch(()=>{});
